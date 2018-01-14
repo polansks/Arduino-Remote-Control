@@ -38,6 +38,8 @@
 #define VOLUME_UP_Y 110
 #define VOLUME_DOWN_X 130
 #define VOLUME_DOWN_Y 160
+#define INPUT_X 10
+#define INPUT_Y 230
 
 // Button colors (represented in binary--see rgbColor struct definition for explanation)
 #define DEFAULT_INACTIVE_RED 0b00110
@@ -78,6 +80,7 @@ private:
   Button volumeDown;
   Button channelUp;
   Button channelDown;
+  Button input;
   rgbColor inactiveColor;   // The color of the buttons when they aren't being pressed
   rgbColor activeColor;     // The color of the buttons whey they are being pressed
   rgbColor background;

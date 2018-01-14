@@ -42,7 +42,8 @@ RemoteControl::RemoteControl() : tft(TFT_CS, TFT_DC)
   channelDown = Button(CHANNEL_DOWN_X, CHANNEL_DOWN_Y, BUTTON_HEIGHT, BUTTON_WIDTH, "DOWN", intColorInactive, intColorActive, &tft);
   volumeUp = Button(VOLUME_UP_X, VOLUME_UP_Y, BUTTON_HEIGHT, BUTTON_WIDTH, "UP", intColorInactive, intColorActive, &tft);
   volumeDown = Button(VOLUME_DOWN_X, VOLUME_DOWN_Y, BUTTON_HEIGHT, BUTTON_WIDTH, "DOWN", intColorInactive, intColorActive, &tft);
-
+  input = Button(INPUT_X, INPUT_Y, BUTTON_HEIGHT, BUTTON_WIDTH, "INPUT", intColorInactive, intColorActive, &tft);
+  
   wasTouched = false;
   lastButton = nullptr;
   
@@ -82,6 +83,7 @@ void RemoteControl::draw()
   channelDown.drawButton();
   volumeUp.drawButton();
   volumeDown.drawButton();
+  input.drawButton();
 
   // Calculate the dimensions of the labels so they can be centered above the buttons
   int16_t x1, y1;
@@ -168,6 +170,12 @@ void RemoteControl::loop()
     {
       volumeDown.flipColor();
       lastButton = &volumeDown;
+      delay(BUTTON_DELAY);
+    }
+    else if (input.inButton(p.x, p.y))
+    {
+      input.flipColor();
+      lastButton = &input;
       delay(BUTTON_DELAY);
     }
     else
