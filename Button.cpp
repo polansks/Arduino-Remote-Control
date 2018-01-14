@@ -77,7 +77,16 @@ Button::~Button()
 void Button::drawButton()
 {
 	tft->fillRoundRect(x_coord, y_coord, width, height, 4, currentColor);
-  tft->setCursor(x_coord + 4, y_coord + 4);
+
+  // Determine the size of the label so that it can be center in the button
+  int16_t x1, y1;
+  uint16_t h, w;
+  tft->getTextBounds(label.c_str(), 0, 0, &x1, &y1, &w, &h);
+
+  // Figure out where it should go
+  int xCoordText = (x_coord + width / 2) - w / 2;
+  int yCoordText = (y_coord + height / 2) + h / 2;
+  tft->setCursor(xCoordText, yCoordText);
   tft->println(label);
 	return;
 }
@@ -122,9 +131,7 @@ void Button::flipColor()
     currentColor = inactiveColor;
   }
 
-  tft->fillRoundRect(x_coord, y_coord, width, height, 4, currentColor);
-  tft->setCursor(x_coord + 4, y_coord + 4);
-  tft->println(label);
+  drawButton();
 
   return;
 }
