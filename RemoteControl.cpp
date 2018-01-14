@@ -1,10 +1,23 @@
+/*******************************************************************************
+ * File: RemoteControl.cpp
+ * Author: Scott Polansky
+ * Description: The RemoteControl class represents a touchscreen remote control.
+ *              It displays a user interface and handles the interaction with
+ *              the user
+ ******************************************************************************/
+
 #include "RemoteControl.h"
 
 
+/*******************************************************************************
+ * Function: RemoteControl
+ * Return Value: n/a
+ * Description: Default constructor. Initializes the screen and the user
+ *              interface with the buttons
+  ******************************************************************************/
 RemoteControl::RemoteControl() : tft(TFT_CS, TFT_DC)
 {
   // Setup the screen
-  //Adafruit_ILI9341 tft = Adafruit_ILI9341(TFT_CS, TFT_DC);
   Adafruit_FT6206 ts = Adafruit_FT6206();
 
   // Set the colors of the buttons
@@ -32,6 +45,12 @@ RemoteControl::RemoteControl() : tft(TFT_CS, TFT_DC)
   return;
 }
 
+/*******************************************************************************
+ * Function: draw
+ * Return Value: n/a
+ * Description: Initializes the screen and draws the remote control on the screen.
+ *               This should be called only in the setup() function of the sketch.
+  ******************************************************************************/
 void RemoteControl::draw()
 {
   tft.begin();
@@ -66,6 +85,15 @@ void RemoteControl::draw()
 }
 
 
+/*******************************************************************************
+ * Function: loop
+ * Return Value: n/a
+ * Description: Loops through repeatedly to see if the user has pushed a button
+ *              and handles the necessary interaction like sending signals and
+ *              changing the display.
+ *              
+ * Note: The buttons do not currently send any signals--that will be added later
+  ******************************************************************************/
 void RemoteControl::loop()
 {
   // See if the screen has been touched

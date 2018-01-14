@@ -1,10 +1,18 @@
+/*******************************************************************************
+ * File: Button.h
+ * Author: Scott Polansky
+ * Description: The Button class represents a button on the touchscreen. It
+ *              displays the button and performes the appropriate action when
+ *              pressed.
+ ******************************************************************************/
+
 #ifndef BUTTON_H
 #define BUTTON_H
 
 #include <Adafruit_ILI9341.h>
 #include "Arduino.h"
 
-#define IR_TRANSMIT_PIN 3
+#define IR_TRANSMIT_PIN 3   // The pin that the transimtting LED is on
 #define PULSE_LENGTH 550
 #define DELAY_LENGTH 600
 
@@ -29,7 +37,6 @@ public:
   void drawButton();
 	void flipColor();
   bool inButton(int x, int y);
-  //void transmitSignal(
 
 };
 

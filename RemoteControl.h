@@ -1,3 +1,11 @@
+/*******************************************************************************
+ * File: RemoteControl.cpp
+ * Author: Scott Polansky
+ * Description: The RemoteControl class represents a touchscreen remote control.
+ *              It displays a user interface and handles the interaction with
+ *              the user
+ ******************************************************************************/
+
 #ifndef REMOTE_CONTROL_H
 #define REMOTE_CONTROL_H
 
@@ -7,16 +15,16 @@
 #include <Adafruit_FT6206.h>
 #include "Button.h"
 
-// The TFT screen variables
-#define TFT_CS 10
-#define TFT_DC 9
-#define TS_MAX_X 240
-#define TS_MAX_Y 320
+// The TFT screen definitions
+#define TFT_CS 10       // Pin for the TFT display
+#define TFT_DC 9        // Pin for the TFT display
+#define TS_MAX_X 240    // Max x-coordinate on the display
+#define TS_MAX_Y 320    // Max y-coordinate on the display
 
 
 // Button sizes
-#define BUTTON_WIDTH 100
-#define BUTTON_HEIGHT 40
+#define BUTTON_WIDTH 100    // Width of buttons
+#define BUTTON_HEIGHT 40    // Height of buttons
 
 // Button locations
 #define POWER_X 10
