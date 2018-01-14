@@ -29,10 +29,14 @@ RemoteControl::RemoteControl() : tft(TFT_CS, TFT_DC)
   activeColor.green = DEFAULT_ACTIVE_GREEN;
   activeColor.blue = DEFAULT_ACTIVE_BLUE;
 
+  background.red = BACKGROUND_COLOR_RED;
+  background.green = BACKGROUND_COLOR_GREEN;
+  background.blue = BACKGROUND_COLOR_BLUE;
   
   // Instantiate the buttons
   uint16_t intColorInactive = inactiveColor.convertColor();
   uint16_t intColorActive = activeColor.convertColor();
+ 
   power = Button(POWER_X, POWER_Y, BUTTON_HEIGHT, BUTTON_WIDTH, "POWER", intColorInactive, intColorActive, &tft);
   channelUp = Button(CHANNEL_UP_X, CHANNEL_UP_Y, BUTTON_HEIGHT, BUTTON_WIDTH, "UP", intColorInactive, intColorActive, &tft);
   channelDown = Button(CHANNEL_DOWN_X, CHANNEL_DOWN_Y, BUTTON_HEIGHT, BUTTON_WIDTH, "DOWN", intColorInactive, intColorActive, &tft);
@@ -66,9 +70,11 @@ void RemoteControl::draw()
 
   
   // Fill the background of the screen and set the text settings
-  tft.fillScreen(ILI9341_BLACK);
+  uint16_t intBackground = background.convertColor();
+  tft.fillScreen(intBackground);
   tft.setTextColor(ILI9341_WHITE);
-  tft.setTextSize(2);
+  tft.setFont(&FreeSans9pt7b);
+  tft.setTextSize(1);
   
   // Draw the buttons
   power.drawButton();
@@ -77,10 +83,25 @@ void RemoteControl::draw()
   volumeUp.drawButton();
   volumeDown.drawButton();
 
+  // Calculate the dimensions of the labels so they can be centered above the buttons
+  int16_t x1, y1;
+  uint16_t w, h;
+  int channelTextWidth, channelTextHeight, volumeTextWidth, volumeTextHeight;
+  tft.getTextBounds("Channel", 0, 0, &x1, &y1, &w, &h);
+  channelTextWidth = w;
+  tft.getTextBounds("Channel", 0, 0, &x1, &y1, &w, &h);
+  volumeTextWidth = w;
+  
+  // Calculate the locations of the labels so they're centered above the buttons
+  int xCoordChannel = CHANNEL_UP_X + BUTTON_WIDTH / 2 - channelTextWidth / 2;
+  int yCoordChannel = CHANNEL_UP_Y - 10;
+  int xCoordVolume = VOLUME_UP_X + BUTTON_WIDTH / 2 - volumeTextWidth / 2;
+  int yCoordVolume = VOLUME_UP_Y - 10;
+  
   // Draw the labels above the channel and volume buttons
-  tft.setCursor(VOLUME_UP_X, VOLUME_UP_Y - 20);
+  tft.setCursor(xCoordVolume, yCoordVolume);
   tft.println("Volume");
-  tft.setCursor(CHANNEL_UP_X, CHANNEL_UP_Y - 20);
+  tft.setCursor(xCoordChannel, yCoordChannel);
   tft.println("Channel");
 }
 

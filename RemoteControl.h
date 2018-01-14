@@ -13,6 +13,7 @@
 #include <SPI.h>
 #include <Wire.h>
 #include <Adafruit_FT6206.h>
+#include <Fonts/FreeSans9pt7b.h>
 #include "Button.h"
 
 // The TFT screen definitions
@@ -39,13 +40,17 @@
 #define VOLUME_DOWN_Y 160
 
 // Button colors (represented in binary--see rgbColor struct definition for explanation)
-#define DEFAULT_INACTIVE_RED 0b01010;
-#define DEFAULT_INACTIVE_GREEN 0b010100;
-#define DEFAULT_INACTIVE_BLUE 0b01010;
+#define DEFAULT_INACTIVE_RED 0b00110
+#define DEFAULT_INACTIVE_GREEN 0b101100
+#define DEFAULT_INACTIVE_BLUE 0b10110
 
-#define DEFAULT_ACTIVE_RED 0b11111;
-#define DEFAULT_ACTIVE_GREEN 0b010000;
-#define DEFAULT_ACTIVE_BLUE 0b01000;
+#define DEFAULT_ACTIVE_RED 0b11111
+#define DEFAULT_ACTIVE_GREEN 0b111111
+#define DEFAULT_ACTIVE_BLUE 0b11111
+
+#define BACKGROUND_COLOR_RED 0b10011
+#define BACKGROUND_COLOR_GREEN 0b100110
+#define BACKGROUND_COLOR_BLUE 0b010011
 
 #define BUTTON_DELAY 100
 
@@ -75,6 +80,7 @@ private:
   Button channelDown;
   rgbColor inactiveColor;   // The color of the buttons when they aren't being pressed
   rgbColor activeColor;     // The color of the buttons whey they are being pressed
+  rgbColor background;
   bool wasTouched;          // Indicator for whether the screen had been touched
   Button* lastButton;       // Keeps track of the last button pushed
 
