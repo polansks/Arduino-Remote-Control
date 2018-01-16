@@ -1,5 +1,5 @@
 /*******************************************************************************
- * File: RemoteControl.cpp
+ * File: RemoteControl.h
  * Author: Scott Polansky
  * Description: The RemoteControl class represents a touchscreen remote control.
  *              It displays a user interface and handles the interaction with

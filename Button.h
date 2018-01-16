@@ -11,6 +11,7 @@
 
 #include <Adafruit_ILI9341.h>
 #include "Arduino.h"
+#include "Action.h"
 
 #define IR_TRANSMIT_PIN 3   // The pin that the transimtting LED is on
 #define PULSE_LENGTH 550
@@ -27,6 +28,7 @@ private:
   uint16_t inactiveColor;
   uint16_t activeColor;
   uint16_t currentColor;
+  Action buttonAct;
 
 	Adafruit_ILI9341* tft; // The screen that the button is on
 
@@ -37,6 +39,7 @@ public:
   void drawButton();
 	void flipColor();
   bool inButton(int x, int y);
+  void setActionSequence(uint8_t *sequence, int bytes); // Sounds exciting!!!
 
 };
 

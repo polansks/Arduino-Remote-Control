@@ -136,3 +136,19 @@ void Button::flipColor()
   return;
 }
 
+
+/*******************************************************************************
+ * Function: setActionSequence
+ * Return Value: n/a
+ * Description: Sets the sequence of pulses for the action.
+ * 
+ * Parameters:  sequence - an array of 8-bit numbers (or 2- digit hexadecimals) 
+ *                         that represent the IR pulses for command
+ *              bytes -    the number of bytes in the sequence, i.e. the number
+ *                         of elements in the array
+  ******************************************************************************/
+void Button::setActionSequence(uint8_t *sequence, int bytes)
+{
+  buttonAct.setSequence(sequence, bytes);
+}
+
