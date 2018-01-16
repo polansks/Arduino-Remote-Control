@@ -7,4 +7,5 @@ This project is a remote control using a touchscreen interface made using an Ard
 
 Components: Arduino Uno - https://www.adafruit.com/product/50<br>
 Adafruit 2.8" TFT Capacitive Touch Shield - https://www.adafruit.com/product/1947<br>
-5mm IR LED (940nm wavelength) - https://www.adafruit.com/product/387 1 kOhm resistor
+5mm IR LED (940nm wavelength) - https://www.adafruit.com/product/387<br>
+1 kOhm resistor
